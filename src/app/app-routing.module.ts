@@ -16,10 +16,6 @@ const routes: Routes = [
     loadChildren: './list/list.module#ListPageModule'
   },
   { 
-    path: 'friends', 
-    loadChildren: './friends/friends.module#FriendsPageModule' 
-  },
-  { 
     path: 'events', 
     loadChildren: './events/events.module#EventsPageModule' 
   },

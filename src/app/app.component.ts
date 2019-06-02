@@ -21,11 +21,6 @@ export class AppComponent {
       icon: 'list'
     },
     {
-      title: 'Friends',
-      url: '/friends',
-      icon: 'contacts'
-    },
-    {
       title: 'Events',
       url: '/events',
       icon: 'bonfire'
