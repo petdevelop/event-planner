@@ -23,7 +23,7 @@ export class AppComponent {
     {
       title: 'Friends',
       url: '/friends',
-      icon: 'people'
+      icon: 'contacts'
     },
     {
       title: 'Events',

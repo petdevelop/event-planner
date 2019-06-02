@@ -23,7 +23,14 @@ const routes: Routes = [
     path: 'events', 
     loadChildren: './events/events.module#EventsPageModule' 
   },
-  { path: 'create-event', loadChildren: './create-event/create-event.module#CreateEventPageModule' }
+  { 
+    path: 'create-event', 
+    loadChildren: './create-event/create-event.module#CreateEventPageModule' 
+  },
+  { 
+    path: 'event-detail', 
+    loadChildren: './event-detail/event-detail.module#EventDetailPageModule' 
+  },
 ];
 
 @NgModule({
