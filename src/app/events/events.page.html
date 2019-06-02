@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Events
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- List of Text Items -->
+  <ion-list>
+    <ion-item button routerLink="/create-event">
+      <ion-label>Birthday</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="center" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/create-event">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-tabs>
+   <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="all">
+       <ion-icon name="flash"></ion-icon>
+       <ion-label>Owner</ion-label>
+     </ion-tab-button>
+
+    <ion-tab-button tab="owner">
+       <ion-icon name="apps"></ion-icon>
+       <ion-label>Guest</ion-label>
+     </ion-tab-button>
+
+    <ion-tab-button tab="guest">
+       <ion-icon name="send"></ion-icon>
+       <ion-label>All</ion-label>
+     </ion-tab-button>
+   </ion-tab-bar>
+ </ion-tabs>
+</ion-content>

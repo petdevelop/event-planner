@@ -14,7 +14,16 @@ const routes: Routes = [
   {
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
-  }
+  },
+  { 
+    path: 'friends', 
+    loadChildren: './friends/friends.module#FriendsPageModule' 
+  },
+  { 
+    path: 'events', 
+    loadChildren: './events/events.module#EventsPageModule' 
+  },
+  { path: 'create-event', loadChildren: './create-event/create-event.module#CreateEventPageModule' }
 ];
 
 @NgModule({
