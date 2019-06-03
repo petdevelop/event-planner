@@ -12,6 +12,9 @@ import { EventDetailPageRoutingModule } from './event-detail.routing.module';
     IonicModule,
     EventDetailPageRoutingModule
   ],
-  declarations: [EventDetailPage]
+  declarations: [
+    EventDetailPage
+  ]
+
 })
 export class EventDetailPageModule {}

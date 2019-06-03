@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-events',
@@ -8,13 +7,11 @@ import { Router } from '@angular/router';
 })
 export class EventsPage implements OnInit {
 
-  constructor(private router: Router) { }
-
   ngOnInit() {
   }
 
   buttonClick() {
-    console.log('navigte')
+    console.log('navigte');
   }
 
 }

@@ -15,19 +15,20 @@ const routes: Routes = [
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
   },
-  { 
-    path: 'events', 
-    loadChildren: './events/events.module#EventsPageModule' 
+  {
+    path: 'events',
+    loadChildren: './events/events.module#EventsPageModule'
   },
-  { 
-    path: 'create-event', 
-    loadChildren: './create-event/create-event.module#CreateEventPageModule' 
+  {
+    path: 'create-event',
+    loadChildren: './create-event/create-event.module#CreateEventPageModule'
   },
-  { 
-    path: 'event-detail', 
-    loadChildren: './event-detail/event-detail.module#EventDetailPageModule' 
+  {
+    path: 'event-detail',
+    loadChildren: './event-detail/event-detail.module#EventDetailPageModule'
   },
 ];
+
 
 @NgModule({
   imports: [
