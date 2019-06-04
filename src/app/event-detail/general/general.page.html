@@ -1,4 +1,19 @@
 
 <ion-content>
-
+    <ion-card *ngIf="eventDetail$ | async as eventDetail">
+        <ion-card-content>
+            <ion-item>
+                <ion-icon name="pin" slot="start"></ion-icon>
+                <ion-label>{{ eventDetail.location }}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="text" slot="start"></ion-icon>
+                <ion-label> {{ eventDetail.description }}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="calendar" slot="start"></ion-icon>
+                <ion-label>{{ eventDetail.date | date:'medium' }}</ion-label>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
 </ion-content>

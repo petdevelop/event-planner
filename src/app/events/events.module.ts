@@ -11,8 +11,10 @@ import { EventsPageRoutingModule } from './events-routing.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    EventsPageRoutingModule
+    EventsPageRoutingModule,
   ],
-  declarations: [EventsPage]
+  declarations: [
+    EventsPage
+  ]
 })
 export class EventsPageModule {}

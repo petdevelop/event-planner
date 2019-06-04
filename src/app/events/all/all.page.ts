@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { EventsModel } from '../events.model';
+import { EventsService } from '../events.service';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-all',
@@ -7,9 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllPage implements OnInit {
 
-  constructor() { }
+  public events$: Observable<Array<EventsModel>>;
+
+  constructor(
+    private eventsService: EventsService) {
+
+    this.events$ = this.eventsService.events$;
+  }
 
   ngOnInit() {
+    this.eventsService.getEvents();
   }
 
 }

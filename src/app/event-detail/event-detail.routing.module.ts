@@ -9,7 +9,7 @@ const routes: Routes = [
     children:
       [
         {
-          path: 'general',
+          path: 'general/:id',
           children:
             [
               {
