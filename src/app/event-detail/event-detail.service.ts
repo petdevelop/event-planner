@@ -1,7 +1,6 @@
 import { BehaviorSubject } from 'rxjs';
-import { EventsService } from '../events/events.service';
 import { Injectable } from '@angular/core';
-import { EventsModel } from '../events/events.model';
+import { EventsModel } from '../models/events.model';
 
 @Injectable({
     providedIn: 'root'
@@ -9,10 +8,6 @@ import { EventsModel } from '../events/events.model';
 export class EventDetailService {
     public eventDetail$ = new BehaviorSubject<EventsModel>(null);
 
-    constructor(private eventsService: EventsService) {}
+    constructor() {}
 
-    public getEventDetail(eventId: string) {
-        const event = this.eventsService.events$.getValue().find(f => f.id === eventId);
-        this.eventDetail$.next(event);
-    }
 }

@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Add Item</ion-title>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <ion-item>
+        <ion-label>Name</ion-label>
+        <ion-input formControlName="name" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Description</ion-label>
+        <ion-textarea formControlName="description" name="description"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label>Url</ion-label>
+        <ion-textarea formControlName="url"></ion-textarea>
+      </ion-item>
+  
+      <ion-button type="submit" expand="block" [disabled]="!form.valid">Submit</ion-button>
+    </form>
+  </ion-content>
+  

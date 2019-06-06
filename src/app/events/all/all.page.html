@@ -1,7 +1,7 @@
 <ion-content>
   
   <ion-list *ngIf="events$ | async as events">
-    <ion-item *ngFor="let event of events" button [routerLink]="['/event-detail/general', event.id]">
+    <ion-item *ngFor="let event of events" button (click)="onClick(event)">
       <ion-label>{{ event.description }}</ion-label>
     </ion-item>
   </ion-list>

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: 'https://event-planner-backend.web.app'
+  url: 'http://localhost:3000'
 };
 
 /*
