@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map, tap, first } from 'rxjs/operators';
 import { EventsModel } from '../models/events.model';
 import { HttpClient } from '@angular/common/http';
@@ -15,7 +15,7 @@ export class EventsService {
 
     constructor(private httpclient: HttpClient) {}
 
-    getEvents(): void {
+    public getEvents(): void {
          this.httpclient.get(`${environment.url}/events`)
             .pipe(
                 first(),
@@ -24,12 +24,16 @@ export class EventsService {
             ).subscribe();
     }
 
-    getItems(eventId: string): void {
+    public getItems(eventId: string): void {
         this.httpclient.get(`${environment.url}/items/${eventId}`)
            .pipe(
                first(),
                map((m: Array<any>) => m.map(l => new ItemsModel(l))),
                tap(t => this.items$.next(t)),
            ).subscribe();
+    }
+
+    public deleteItem(itemId: string): Observable<any> {
+        return this.httpclient.delete(`${environment.url}/items/${itemId}`);
     }
 }

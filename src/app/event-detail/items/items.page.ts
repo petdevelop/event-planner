@@ -17,9 +17,17 @@ export class ItemsPage implements OnInit {
     private eventDetailService: EventDetailService) { }
 
   ngOnInit() {
-    console.log('items init');
     this.items$ = this.eventsService.items$;
     this.eventsService.getItems(this.eventDetailService.eventDetail$.getValue().id);
+
+    this.items$.subscribe(r => console.log(r));
+  }
+
+  public deleteItem(item: ItemsModel): void {
+    this.eventsService.deleteItem(item.id)
+      .subscribe(r => {
+        console.log(r);
+      });
   }
 
 }
