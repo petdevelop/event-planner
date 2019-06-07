@@ -8,5 +8,24 @@
 </ion-header>
 
 <ion-content>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <ion-item>
+      <ion-label>Name</ion-label>
+      <ion-input formControlName="name" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Description</ion-label>
+      <ion-textarea formControlName="description" name="description"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Location</ion-label>
+      <ion-textarea formControlName="location"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Date and Time</ion-label>
+      <ion-datetime formControlName="date" display-format="MMM DD, YYYY HH:mm"></ion-datetime>
+    </ion-item>
 
+    <ion-button type="submit" expand="block" [disabled]="!form.valid">Submit</ion-button>
+  </form>
 </ion-content>
