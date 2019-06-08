@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { CreateEventService } from '../create-event.service';
 import { ItemsModel } from 'src/app/models/items.model';
-import { EventsService } from 'src/app/events/events.service';
-import { EventDetailService } from 'src/app/event-detail/event-detail.service';
 import { ToastController } from '@ionic/angular';
 
 @Component({
@@ -18,8 +16,6 @@ export class CreateItemPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private createEventService: CreateEventService,
-    private eventDetailService: EventDetailService,
-    private eventsService: EventsService,
     private toastController: ToastController) {
 
     this.form = this.formBuilder.group({
@@ -39,13 +35,11 @@ export class CreateItemPage implements OnInit {
     toast.present();
   }
 
-
   submit() {
     this.createEventService
-      .createItem({...this.form.value, eventId: this.eventDetailService.eventDetail$.getValue().id} as ItemsModel)
+      .createItem(this.form.value as ItemsModel)
       .subscribe(_ => {
         this.form.reset();
-        this.eventsService.getItems(this.eventDetailService.eventDetail$.getValue().id);
         this.presentToast();
       });
   }

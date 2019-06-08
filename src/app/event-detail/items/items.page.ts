@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ItemsModel } from 'src/app/models/items.model';
 import { EventsService } from 'src/app/events/events.service';
-import { EventDetailService } from '../event-detail.service';
+import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-items',
@@ -14,19 +15,29 @@ export class ItemsPage implements OnInit {
 
   constructor(
     public eventsService: EventsService,
-    private eventDetailService: EventDetailService) { }
+    private toastController: ToastController,
+    private router: Router) { }
 
   ngOnInit() {
     this.items$ = this.eventsService.items$;
-    this.eventsService.getItems(this.eventDetailService.eventDetail$.getValue().id);
+    this.eventsService.getItems();
+  }
 
-    this.items$.subscribe(r => console.log(r));
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Your item has been deleted.',
+      duration: 2000
+    });
+    toast.present();
   }
 
   public deleteItem(item: ItemsModel): void {
     this.eventsService.deleteItem(item.id)
       .subscribe(r => {
-        console.log(r);
+        if (r.deletedCount === 1) {
+          this.presentToast();
+          this.router.navigateByUrl('/create-event/items');
+        }
       });
   }
 

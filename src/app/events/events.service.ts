@@ -5,6 +5,7 @@ import { EventsModel } from '../models/events.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { ItemsModel } from '../models/items.model';
+import { EventDetailService } from '../event-detail/event-detail.service';
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +14,9 @@ export class EventsService {
     public events$ = new BehaviorSubject<Array<EventsModel>>(null);
     public items$ = new BehaviorSubject<Array<ItemsModel>>(null);
 
-    constructor(private httpclient: HttpClient) {}
+    constructor(
+        private httpclient: HttpClient,
+        private eventDetailService: EventDetailService) {}
 
     public getEvents(): void {
          this.httpclient.get(`${environment.url}/events`)
@@ -24,7 +27,9 @@ export class EventsService {
             ).subscribe();
     }
 
-    public getItems(eventId: string): void {
+    public getItems(): void {
+        const eventId = this.eventDetailService.eventDetail$.getValue().id;
+
         this.httpclient.get(`${environment.url}/items/${eventId}`)
            .pipe(
                first(),
@@ -34,6 +39,7 @@ export class EventsService {
     }
 
     public deleteItem(itemId: string): Observable<any> {
-        return this.httpclient.delete(`${environment.url}/items/${itemId}`);
+        return this.httpclient.delete(`${environment.url}/items/${itemId}`)
+            .pipe(tap(_ => this.getItems()));
     }
 }

@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CreateEventService } from './create-event.service';
-import { EventsService } from '../events/events.service';
 import { Router } from '@angular/router';
-import { EventDetailService } from '../event-detail/event-detail.service';
-import { EventsModel } from '../models/events.model';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-create-event',
@@ -18,7 +16,7 @@ export class CreateEventPage implements OnInit {
     private formBuilder: FormBuilder,
     private createEventService: CreateEventService,
     private router: Router,
-    private eventDetailService: EventDetailService) {
+    private toastController: ToastController,) {
 
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
@@ -28,16 +26,22 @@ export class CreateEventPage implements OnInit {
     });
   }
 
-
   ngOnInit() {
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Your event has been created.',
+      duration: 2000
+    });
+    toast.present();
   }
 
   public submit(): void {
     this.createEventService.createEvent(this.form.value)
-      .subscribe(event => {
-        console.log(event);
-        this.eventDetailService.eventDetail$.next(new EventsModel(event));
+      .subscribe(_ => {
         this.router.navigate(['/event-detail/items']);
+        this.presentToast();
       });
   }
 
