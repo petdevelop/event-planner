@@ -1,4 +1,20 @@
-
-<ion-content>
-
+<ion-content *ngIf="friendsList$ | async as friends">
+    <ion-item *ngIf="!friends">
+        <ion-label>No friends on this event yet!</ion-label>
+    </ion-item>
+    
+    <ion-list>
+        <ion-item-sliding *ngFor="let friend of friends" button>
+        <ion-item>
+            <ion-label>
+                {{ friend.name }}
+            </ion-label>
+        </ion-item>
+        <ion-item-options side="end">
+            <ion-item-option color="danger">
+            <ion-icon name="trash"></ion-icon>
+            </ion-item-option>
+        </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
 </ion-content>

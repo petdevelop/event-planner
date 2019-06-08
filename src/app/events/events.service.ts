@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, tap, first } from 'rxjs/operators';
-import { EventsModel } from '../models/events.model';
+import { EventsModel } from './events.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { ItemsModel } from '../models/items.model';
+import { ItemsModel } from '../event-detail/items/items.model';
 import { EventDetailService } from '../event-detail/event-detail.service';
 
 @Injectable({
@@ -28,7 +28,7 @@ export class EventsService {
     }
 
     public getItems(): void {
-        const eventId = this.eventDetailService.eventDetail$.getValue().id;
+        const eventId = this.eventDetailService.eventDetail$.getValue()._id;
 
         this.httpclient.get(`${environment.url}/items/${eventId}`)
            .pipe(

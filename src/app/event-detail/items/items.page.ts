@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ItemsModel } from 'src/app/models/items.model';
+import { ItemsModel } from 'src/app/event-detail/items/items.model';
 import { EventsService } from 'src/app/events/events.service';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -32,7 +32,7 @@ export class ItemsPage implements OnInit {
   }
 
   public deleteItem(item: ItemsModel): void {
-    this.eventsService.deleteItem(item.id)
+    this.eventsService.deleteItem(item._id)
       .subscribe(r => {
         if (r.deletedCount === 1) {
           this.presentToast();

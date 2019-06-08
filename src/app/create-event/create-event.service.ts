@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { EventsModel } from '../models/events.model';
+import { EventsModel } from '../events/events.model';
 import { Observable } from 'rxjs';
-import { ItemsModel } from '../models/items.model';
+import { ItemsModel } from '../event-detail/items/items.model';
 import { EventDetailService } from '../event-detail/event-detail.service';
 import { tap } from 'rxjs/operators';
 import { EventsService } from '../events/events.service';
@@ -20,17 +20,17 @@ export class CreateEventService {
 
   public createEvent(event: EventsModel): Observable<any> {
     return this.httpclient.post(`${environment.url}/events`, event)
-      .pipe(tap(_event => {
+      .pipe(tap(e => {
         this.eventsService.getEvents();
-        this.eventDetailService.eventDetail$.next(new EventsModel(_event));
+        this.eventDetailService.eventDetail$.next(new EventsModel(e));
       }));
   }
 
   public createItem(item: ItemsModel): Observable<any> {
-    const eventId = this.eventDetailService.eventDetail$.getValue().id;
-    const _item = {...item, eventId: eventId};
+    const eventId = this.eventDetailService.eventDetail$.getValue()._id;
+    const i = {...item, eventId};
 
-    return this.httpclient.post(`${environment.url}/items`, _item)
+    return this.httpclient.post(`${environment.url}/items`, i)
       .pipe(tap(_ => this.eventsService.getItems()));
   }
 }

@@ -27,6 +27,7 @@ const routes: Routes = [
     path: 'event-detail',
     loadChildren: './event-detail/event-detail.module#EventDetailPageModule'
   },  { path: 'create-item', loadChildren: './create-event/create-item/create-item.module#CreateItemPageModule' },
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
 
 ];
 

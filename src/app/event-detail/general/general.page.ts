@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventDetailService } from '../event-detail.service';
-import { EventsModel } from 'src/app/models/events.model';
+import { EventsModel } from 'src/app/events/events.model';
 import { Observable } from 'rxjs';
 
 @Component({

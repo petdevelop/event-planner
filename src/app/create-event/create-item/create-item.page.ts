@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { CreateEventService } from '../create-event.service';
-import { ItemsModel } from 'src/app/models/items.model';
+import { ItemsModel } from 'src/app/event-detail/items/items.model';
 import { ToastController } from '@ionic/angular';
 
 @Component({
