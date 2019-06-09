@@ -12,14 +12,11 @@ export class FriendsPage implements OnInit {
   public friendsList$: Observable<Array<FriendsModel>>;
 
   constructor(
-    private friendsService: FriendsService) { }
+    private friendsService: FriendsService) {
+      this.friendsList$ = this.friendsService.friendsList$;
+    }
 
   ngOnInit() {
-    this.friendsList$ = this.friendsService.friendsList$;
-
-    this.friendsList$.subscribe(r => console.log(r));
-
-    // this.friendsService.friendsList$.next(this.friendsService.friendsList$.getValue());
+    this.friendsService.getFriends();
   }
-
 }

@@ -3,7 +3,7 @@ import { Observable, BehaviorSubject, of } from 'rxjs';
 import { FriendsModel } from './friends.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { switchMap, map } from 'rxjs/operators';
+import { switchMap, map, tap } from 'rxjs/operators';
 import { LoginService } from 'src/app/login/login.service';
 
 @Injectable({
@@ -38,5 +38,12 @@ export class FriendsService {
           return of(null);
         })
       );
+  }
+
+  public getFriends(): void {
+    this.httpclient.get(`${environment.url}/friends/${this.loginService.user$.getValue()._id}`)
+      .subscribe((r: any) => {
+        this.friendsList$.next(r);
+      });
   }
 }

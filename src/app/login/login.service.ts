@@ -24,4 +24,9 @@ export class LoginService {
         }
       }));
   }
+
+  public setUserFromLocalStorage(): void {
+    const user: UserModel = JSON.parse(localStorage.getItem('user'));
+    this.user$.next(new UserModel(user));
+  }
 }

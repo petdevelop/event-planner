@@ -38,10 +38,10 @@ export class LoginPage implements OnInit {
   }
 
   public login() {
-    // if (localStorage.getItem('user')) {
-    //   this.router.navigateByUrl('/home');
-    // } else 
-    {
+    if (localStorage.getItem('user')) {
+      this.loginService.setUserFromLocalStorage();
+      this.router.navigateByUrl('/home');
+    } else {
       FB.login(response => {
         if (response.authResponse) {
           this.router.navigateByUrl('/home');
