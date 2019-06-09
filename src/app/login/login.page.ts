@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FriendsService } from '../event-detail/friends/friends.service';
+import { LoginService } from './login.service';
 
 declare var FB: any;
 
@@ -13,7 +14,8 @@ export class LoginPage implements OnInit {
 
   constructor(
     private router: Router,
-    private friendsService: FriendsService) { }
+    private friendsService: FriendsService,
+    private loginService: LoginService) { }
 
   ngOnInit() {
     (window as any).fbAsyncInit = () => {
@@ -27,29 +29,37 @@ export class LoginPage implements OnInit {
     };
 
     ((d, s, id) => {
-       var js, fjs = d.getElementsByTagName(s)[0];
+       let js, fjs = d.getElementsByTagName(s)[0];
        if (d.getElementById(id)) {return;}
        js = d.createElement(s); js.id = id;
-       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       js.src = 'https://connect.facebook.net/en_US/sdk.js';
        fjs.parentNode.insertBefore(js, fjs);
      })(document, 'script', 'facebook-jssdk');
-
   }
 
-  public submitLogin() {
-    FB.login((response) => {
-      if (response.authResponse) {
-        this.router.navigateByUrl('/home');
+  public login() {
+    // if (localStorage.getItem('user')) {
+    //   this.router.navigateByUrl('/home');
+    // } else 
+    {
+      FB.login(response => {
+        if (response.authResponse) {
+          this.router.navigateByUrl('/home');
 
-        FB.api(`/${response.authResponse.userID}/friends`, 'GET', {}, r => {
-            console.log(r.data);
-            this.friendsService.addFriendsList(r.data).subscribe();
-          }
-        );
-      } else {
-        console.log('User login failed');
-      }
-    }, {scope: 'user_friends'});
+          FB.api(`/${response.authResponse.userID}/`, 'GET', {}, r => {
+            this.loginService.loginOrRegister(r.id, r.name)
+              .subscribe(_ => {
+                FB.api(`/${response.authResponse.userID}/friends`, 'GET', {}, l => {
+                  this.friendsService.addFriendsList(l.data)
+                    .subscribe();
+                });
+              });
+          });
+
+        } else {
+          console.log('User login failed');
+        }
+      }, {scope: 'email,user_friends'});
+    }
   }
-
 }

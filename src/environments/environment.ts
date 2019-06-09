@@ -7,7 +7,7 @@ const productionUrl = 'https://event-planner-backend.firebaseapp.com';
 
 export const environment = {
   production: false,
-  url: developmentUrl
+  url: productionUrl
 };
 
 /*

@@ -12,10 +12,6 @@ const routes: Routes = [
     loadChildren: './home/home.module#HomePageModule'
   },
   {
-    path: 'list',
-    loadChildren: './list/list.module#ListPageModule'
-  },
-  {
     path: 'events',
     loadChildren: './events/events.module#EventsPageModule'
   },
@@ -26,7 +22,8 @@ const routes: Routes = [
   {
     path: 'event-detail',
     loadChildren: './event-detail/event-detail.module#EventDetailPageModule'
-  },  { path: 'create-item', loadChildren: './create-event/create-item/create-item.module#CreateItemPageModule' },
+  },
+  { path: 'create-item', loadChildren: './create-event/create-item/create-item.module#CreateItemPageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
 
 ];
