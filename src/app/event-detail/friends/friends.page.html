@@ -6,6 +6,9 @@
     <ion-list>
         <ion-item-sliding *ngFor="let friend of friends" button>
         <ion-item>
+            <ion-avatar slot="start">
+                <img src="{{friend.picture}}">
+            </ion-avatar>
             <ion-label>
                 {{ friend.name }}
             </ion-label>

@@ -46,4 +46,9 @@ export class FriendsService {
         this.friendsList$.next(r);
       });
   }
+
+  public updateFriendsProfilePicture(id: string, picture: string): void {
+    this.httpclient.post(`${environment.url}/friends/picture`, {id, picture})
+      .subscribe();
+  }
 }

@@ -52,6 +52,12 @@ export class LoginPage implements OnInit {
                 FB.api(`/${response.authResponse.userID}/friends`, 'GET', {}, l => {
                   this.friendsService.addFriendsList(l.data)
                     .subscribe();
+
+                  l.data.forEach(e => {
+                    FB.api(`/${e.id}/picture?redirect=false`, 'GET', {}, r => {
+                      this.friendsService.updateFriendsProfilePicture(e.id, r.data.url);
+                    });
+                  });
                 });
               });
           });
@@ -59,7 +65,7 @@ export class LoginPage implements OnInit {
         } else {
           console.log('User login failed');
         }
-      }, {scope: 'email,user_friends'});
+      }, {scope: 'user_photos,public_profile,email,user_friends'});
     }
   }
 }
